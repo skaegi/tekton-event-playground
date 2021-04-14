@@ -9,3 +9,5 @@ spec:
     value: $(header)
   - name: body
     value: $(body)
+  - name: event
+    value: $(event)  

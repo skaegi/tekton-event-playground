@@ -8,13 +8,17 @@ spec:
       description: The event header
     - name: body
       description: The event body
+    - name: event
+      description: The event body
   steps:
   - name: print-event
     env:
       - name: HEADER
         value: $(params.header)
       - name: BODY
-        value: $(params.body)  
+        value: $(params.body)
+      - name: EVENT
+        value: $(params.event)
     image: ubuntu
     command: ["/bin/sh", "-c"]
     args:
