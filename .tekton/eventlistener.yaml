@@ -5,3 +5,13 @@ metadata:
 spec:
   triggers:
     - triggerRef: trigger
+----
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: EventListener
+metadata:
+  name: event-listener2
+  annotations:
+    github: https://github.com/skaegi/tekton-event-playground
+spec:
+  triggers:
+    - triggerRef: trigger
