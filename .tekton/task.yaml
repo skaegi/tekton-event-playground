@@ -25,6 +25,7 @@ spec:
     - env;
       ls -al /opt/environment-properties;
       ls -al /opt/secure-properties;
+      cat /opt/secure-properties/*;
     volumeMounts:
     - name: environment-properties
       mountPath: "/opt/environment-properties"
