@@ -25,7 +25,7 @@ spec:
     - env;
       ls -al /opt/environment-properties;
       ls -al /opt/secure-properties;
-      cat /opt/secure-properties/*;
+      cat /opt/secure-properties/github | jq .;
     volumeMounts:
     - name: environment-properties
       mountPath: "/opt/environment-properties"
