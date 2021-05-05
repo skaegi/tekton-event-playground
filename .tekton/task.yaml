@@ -25,16 +25,22 @@ spec:
     - env;
       ls -al /opt/environment-properties;
       ls -al /opt/secure-properties;
-      cat /opt/secure-properties/github | jq .;
+      cat /opt/toolchain/toolchain.json | jq .;
     volumeMounts:
     - name: environment-properties
       mountPath: "/opt/environment-properties"
+    - name: toolchain
+      mountPath: "/opt/toolchain"
     - name: secure-properties
       mountPath: "/opt/secure-properties"
   volumes:
   - name: environment-properties
     configMap:
       name: environment-properties
+      optional: true
+  - name: toolchain
+    configMap:
+      name: toolchain
       optional: true
   - name: secure-properties
     secret:
