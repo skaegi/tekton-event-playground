@@ -23,3 +23,20 @@ spec:
     command: ["/bin/sh", "-c"]
     args:
     - env;
+      ls -al /opt/environment-properties;
+      ls -al /opt/secure-properties;
+    volumeMounts:
+    - name: environment-properties
+      mountPath: "/opt/environment-properties"
+    - name: secure-properties
+      mountPath: "/opt/secure-properties"
+  volumes:
+  - name: environment-properties
+    configMap:
+      name: environment-properties
+      optional: true
+  - name: secure-properties
+    secret:
+      secretName: secure-properties
+      optional: true
+  
