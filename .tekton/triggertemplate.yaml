@@ -9,6 +9,10 @@ spec:
   - name: body
     description: The event body
   resourcetemplates:
+  - apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      name: default
   - apiVersion: tekton.dev/v1beta1
     kind: PipelineRun
     metadata:
