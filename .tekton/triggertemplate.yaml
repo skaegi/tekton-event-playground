@@ -9,10 +9,6 @@ spec:
   - name: body
     description: The event body
   resourcetemplates:
-  - apiVersion: v1
-    kind: ServiceAccount
-    metadata:
-      name: default
   - apiVersion: tekton.dev/v1beta1
     kind: PipelineRun
     metadata:
@@ -25,6 +21,9 @@ spec:
         value: $(tt.params.header)
       - name: body
         value: $(tt.params.body)
+      podTemplate:
+        imagePullSecrets:
+        - name: pipeline-pullsecret
       workspaces:
           - name: pipeline-ws
             persistentVolumeClaim:
