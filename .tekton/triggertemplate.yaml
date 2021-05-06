@@ -9,17 +9,6 @@ spec:
   - name: body
     description: The event body
   resourcetemplates:
-  - apiVersion: v1
-    kind: PersistentVolumeClaim
-    metadata:
-      name: pipelinerun-pvc
-    spec:
-      resources:
-        requests:
-          storage:  5Gi
-      volumeMode: Filesystem
-      accessModes:
-        - ReadWriteOnce
   - apiVersion: tekton.dev/v1beta1
     kind: PipelineRun
     metadata:
