@@ -12,7 +12,7 @@ spec:
   - apiVersion: v1
     kind: PersistentVolumeClaim
     metadata:
-      name: pipelinerun-$(uid)-pvc
+      name: pipelinerun-pvc
     spec:
       resources:
         requests:
@@ -35,5 +35,5 @@ spec:
       workspaces:
           - name: pipeline-ws
             persistentVolumeClaim:
-              claimName: pipelinerun-$(uid)-pvc
+              claimName: pipelinerun-pvc
 
