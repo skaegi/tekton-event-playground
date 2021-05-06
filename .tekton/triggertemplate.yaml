@@ -12,7 +12,7 @@ spec:
   - apiVersion: tekton.dev/v1beta1
     kind: PipelineRun
     metadata:
-      generateName: pipeline-run-
+      name: pipelinerun-$(uid)
     spec:
       pipelineRef:
         name: pipeline
@@ -21,4 +21,8 @@ spec:
         value: $(tt.params.header)
       - name: body
         value: $(tt.params.body)
+      workspaces:
+          - name: pipeline-ws
+            persistentVolumeClaim:
+              claimName: pipelinerun-$(uid)-pvc
 
