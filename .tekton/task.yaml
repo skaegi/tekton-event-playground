@@ -19,17 +19,20 @@ spec:
     command: ["/bin/sh", "-c"]
     args:
     - env;
-      ls -al /opt/environment-properties;
+      ls -al /opt/properties;
       cat /opt/toolchain/toolchain.json | jq .;
     volumeMounts:
-    - name: environment-properties
-      mountPath: "/opt/environment-properties"
+    - name: properties
+      mountPath: "/opt/properties"
     - name: toolchain
       mountPath: "/opt/toolchain"
   volumes:
-  - name: environment-properties
+  - name: properties
     projected:
       sources:
+      - configMap:
+          name: default-properties
+          optional: true
       - configMap:
           name: environment-properties
           optional: true
