@@ -17,8 +17,6 @@ spec:
         value: $(params.header)
       - name: BODY
         value: $(params.body)
-      - name: EVENT
-        value: $(params.event)
     image: icr.io/continuous-delivery/pipeline/pipeline-base-ubi:3.0
     command: ["/bin/sh", "-c"]
     args:

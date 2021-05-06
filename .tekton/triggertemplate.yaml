@@ -8,8 +8,6 @@ spec:
     description: The event header
   - name: body
     description: The event body
-  - name: event
-    description: The event body
   resourcetemplates:
   - apiVersion: tekton.dev/v1beta1
     kind: PipelineRun
@@ -23,5 +21,4 @@ spec:
         value: $(tt.params.header)
       - name: body
         value: $(tt.params.body)
-      - name: event
-        value: $(tt.params.event)
+

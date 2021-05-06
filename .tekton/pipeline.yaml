@@ -8,8 +8,6 @@ spec:
       description: The event header
     - name: body
       description: The event body
-    - name: event
-      description: The event body
   tasks:
     - name: pipeline-task
       taskRef:
@@ -19,5 +17,3 @@ spec:
           value: $(params.header)
         - name: body
           value: $(params.body)
-        - name: event
-          value: $(params.event)
