@@ -8,8 +8,6 @@ spec:
       description: The event header
     - name: body
       description: The event body
-    - name: event
-      description: The event body
   steps:
   - name: print-event
     env:
