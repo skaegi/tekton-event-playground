@@ -23,7 +23,7 @@ spec:
         value: $(tt.params.body)
       podTemplate:
         imagePullSecrets:
-        - name: pipeline-pullsecretxx
+        - name: pipeline-pullsecret
       workspaces:
           - name: pipeline-ws
             persistentVolumeClaim:
