@@ -16,7 +16,7 @@ spec:
     metadata:
       name: pipeline-pullsecret
     data:
-      .dockerconfigjson: $(params.dockerconfigjson)
+      .dockerconfigjson: $(tt.params.dockerconfigjson)
   - apiVersion: tekton.dev/v1beta1
     kind: PipelineRun
     metadata:
