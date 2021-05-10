@@ -9,7 +9,6 @@ spec:
   - name: body
     description: The event body
   - name: dockerconfigjson
-    default: eyJhdXRocyI6e319Cg==
   resourcetemplates:
   - apiVersion: v1
     kind: Secret
