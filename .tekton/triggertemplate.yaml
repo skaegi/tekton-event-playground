@@ -8,7 +8,16 @@ spec:
     description: The event header
   - name: body
     description: The event body
+  - name: dockerconfigjson
+    default: eyJhdXRocyI6e319Cg==
   resourcetemplates:
+  - apiVersion: v1
+    kind: Secret
+    type: kubernetes.io/dockerconfigjson
+    metadata:
+      name: pipeline-pullsecret
+    data:
+      .dockerconfigjson: $(dockerconfigjson)
   - apiVersion: tekton.dev/v1beta1
     kind: PipelineRun
     metadata:

@@ -46,4 +46,17 @@ spec:
     configMap:
       name: toolchain
       optional: true
-  
+---
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: task2
+spec:
+  workspaces:
+  - name: pipeline
+  steps:
+  - name: private-alpine
+    image: us.icr.io/skaegi/buildkit-testing:20
+    command: ["/bin/sh", "-c"]
+    args:
+    - ls -al /workspace/pipeline;
