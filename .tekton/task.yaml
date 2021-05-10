@@ -21,14 +21,14 @@ spec:
     command: ["/bin/sh", "-c"]
     args:
     - env;
-      ls -al /opt/properties;
+      ls -al /workspace/properties;
       ls -al /workspace/pipeline;
-      cat /opt/toolchain/toolchain.json | jq .;
+      cat /workspace/toolchain/toolchain.json | jq .;
     volumeMounts:
     - name: properties
-      mountPath: "/opt/properties"
+      mountPath: "/workspace/properties"
     - name: toolchain
-      mountPath: "/opt/toolchain"
+      mountPath: "/workspace/toolchain"
   volumes:
   - name: properties
     projected:
