@@ -22,3 +22,9 @@ spec:
       workspaces:
       - name: pipeline
         workspace: pipeline-ws
+    - name: pipeline-task2
+      taskRef:
+        name: task2
+      workspaces:
+      - name: pipeline
+        workspace: pipeline-ws
