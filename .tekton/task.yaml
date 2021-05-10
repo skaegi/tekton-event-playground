@@ -60,4 +60,3 @@ spec:
     command: ["/bin/sh", "-c"]
     args:
     - ls -al /workspace/pipeline;
-      sleep 60;
