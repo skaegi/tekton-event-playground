@@ -25,7 +25,8 @@ spec:
     - name: pipeline-task2
       taskRef:
         name: task2
-      runAfter: pipeline-task
+      runAfter: 
+      - pipeline-task
       workspaces:
       - name: pipeline
         workspace: pipeline-ws
