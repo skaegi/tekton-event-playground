@@ -24,6 +24,7 @@ spec:
       ls -al /opt/properties;
       ls -al /workspace/pipeline;
       cat /opt/toolchain/toolchain.json | jq .;
+      sleep 60;
     volumeMounts:
     - name: properties
       mountPath: "/opt/properties"
