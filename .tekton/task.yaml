@@ -23,12 +23,13 @@ spec:
     - env;
       ls -al /workspace/properties;
       ls -al /workspace/pipeline;
-      cat /workspace/toolchain/toolchain.json | jq .;
+      cat /workspace/toolchain.json | jq .;
     volumeMounts:
     - name: properties
       mountPath: "/workspace/properties"
     - name: toolchain
-      mountPath: "/workspace/toolchain"
+      mountPath: "/workspace/toolchain.json"
+      subPath: toolchain.json
   volumes:
   - name: properties
     projected:
