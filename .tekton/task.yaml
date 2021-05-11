@@ -23,12 +23,14 @@ spec:
     - set -x;
       ls -al ~;
       ls -al ~/.bluemix;
+      cat ~/.bluemix/config.json;
       env;
       source /workspace/scripts/git-auth.sh https://github.com/skaegi/tekton-event-playground;
       git clone https://github.com/skaegi/tekton-event-playground;
       echo tada;
+      ls -al ~;
       ls -al ~/.bluemix;
-      cat ~/.bluemix/config.json
+      cat ~/.bluemix/config.json;
       ls -al ~/.gitconfig;
       cat ~/.gitconfig;
       ls -al ~/.git-credentials;
