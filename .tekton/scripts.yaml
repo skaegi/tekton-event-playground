@@ -5,6 +5,7 @@ metadata:
 data:
   git-auth.sh: |
     #!/bin/bash
+    set -x
     APIKEY=${APIKEY:-$([ -f /workspace/properties/apikey ] && cat /workspace/properties/apikey)}
     if [ -z "$APIKEY" ]; then
       echo "No APIKEY provided"
