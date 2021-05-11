@@ -21,15 +21,18 @@ spec:
     command: ["/bin/sh", "-c"]
     args:
     - env;
-      ls -al /workspace/properties;
-      ls -al /workspace/pipeline;
-      cat /workspace/toolchain.json | jq .;
+      source /workspace/scripts/git-auth.sh xyzzy
+      #ls -al /workspace/properties;
+      #ls -al /workspace/pipeline;
+      #cat /workspace/toolchain.json | jq .;
     volumeMounts:
     - name: properties
       mountPath: "/workspace/properties"
     - name: toolchain
       mountPath: "/workspace/toolchain.json"
       subPath: toolchain.json
+    - name: scripts
+      mountPath: "/workspace/scripts"
   volumes:
   - name: properties
     projected:
@@ -46,7 +49,9 @@ spec:
   - name: toolchain
     configMap:
       name: toolchain
-      optional: true
+  - name: scripts
+    configMap:
+      name: scripts
 ---
 apiVersion: tekton.dev/v1beta1
 kind: Task
