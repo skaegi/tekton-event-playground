@@ -19,7 +19,6 @@ spec:
         value: $(params.body)
     image: icr.io/continuous-delivery/pipeline/pipeline-base-ubi:3.0
     script: |
-      set -x;
       ibmcloud config --check-version false;
       ibmcloud login --no-region --apikey $(cat /workspace/properties/apikey);
       . /workspace/scripts/git-auth.sh https://github.com/skaegi/tekton-event-playground;
