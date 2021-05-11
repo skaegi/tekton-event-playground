@@ -20,9 +20,11 @@ spec:
     image: icr.io/continuous-delivery/pipeline/pipeline-base-ubi:3.0
     command: ["/bin/sh", "-c"]
     args:
-    - env;
-      source /workspace/scripts/git-auth.sh https://github.com/skaegi/tekton-event-playground
-      git clone https://github.com/skaegi/tekton-event-playground
+    - set -x;
+      env;
+      source /workspace/scripts/git-auth.sh https://github.com/skaegi/tekton-event-playground;
+      git clone https://github.com/skaegi/tekton-event-playground;
+      echo tada;
       #ls -al /workspace/properties;
       #ls -al /workspace/pipeline;
       #cat /workspace/toolchain.json | jq .;
