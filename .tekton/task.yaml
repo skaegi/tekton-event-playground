@@ -22,6 +22,7 @@ spec:
     args:
     - env;
       source /workspace/scripts/git-auth.sh https://github.com/skaegi/tekton-event-playground
+      git clone https://github.com/skaegi/tekton-event-playground
       #ls -al /workspace/properties;
       #ls -al /workspace/pipeline;
       #cat /workspace/toolchain.json | jq .;

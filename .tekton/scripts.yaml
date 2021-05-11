@@ -80,3 +80,6 @@ data:
     echo "GIT_REPOSITORY=$REPOSITORY"
     echo "GIT_AUTH_USER=$GIT_AUTH_USER"
     echo "GIT_TOKEN=$GIT_TOKEN"
+
+    git config --global credential.helper store
+    printf "url=$REPOSITORY\nusername=$GIT_AUTH_USER\npassword=$GIT_TOKEN" | git credential-store store
