@@ -21,10 +21,13 @@ spec:
     command: ["/bin/sh", "-c"]
     args:
     - set -x;
+      ls -al;
+      ls -al ~/*;
       env;
       source /workspace/scripts/git-auth.sh https://github.com/skaegi/tekton-event-playground;
       git clone https://github.com/skaegi/tekton-event-playground;
       echo tada;
+      ls -al;
       ls -al ~/*;
       #ls -al /workspace/properties;
       #ls -al /workspace/pipeline;
