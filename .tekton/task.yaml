@@ -27,8 +27,9 @@ spec:
       source /workspace/scripts/git-auth.sh https://github.com/skaegi/tekton-event-playground;
       git clone https://github.com/skaegi/tekton-event-playground;
       echo tada;
-      ls -al ~;
-      ls -al ~/*;
+      ls -al ~/.bluemix;
+      ls -al ~/.gitconfig;
+      ls -al ~/.git-credentials;
       #ls -al /workspace/properties;
       #ls -al /workspace/pipeline;
       #cat /workspace/toolchain.json | jq .;
