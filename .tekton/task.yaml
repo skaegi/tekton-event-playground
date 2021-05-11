@@ -21,9 +21,8 @@ spec:
     command: ["/bin/sh", "-c"]
     args:
     - set -x;
-      export APIKEY=${APIKEY:-$([ -f /workspace/properties/apikey ] && cat /workspace/properties/apikey)}
       ibmcloud config --check-version false;
-      ibmcloud login --no-region --apikey $APIKEY;
+      ibmcloud login --no-region --apikey $(cat /workspace/properties/apikey);
       ls -al ~;
       ls -al ~/.bluemix;
       cat ~/.bluemix/config.json;
