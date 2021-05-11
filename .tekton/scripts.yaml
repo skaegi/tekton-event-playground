@@ -5,13 +5,8 @@ metadata:
 data:
   git-auth.sh: |
     #!/bin/bash
+    set -e -o pipefail
     set -x
-    APIKEY=${APIKEY:-$([ -f /workspace/properties/apikey ] && cat /workspace/properties/apikey)}
-    if [ -z "$APIKEY" ]; then
-      echo "No APIKEY provided"
-      exit 1
-    fi
-
     if [ -z "$1" ]; then
       echo "No repository argument provided"
       exit 1
@@ -52,12 +47,6 @@ data:
       GIT_AUTH_USER="x-token-auth"
     fi;
 
-    IBMCLOUDAPI=${IBMCLOUDAPI:-https://cloud.ibm.com}
-    echo "Fetching token for $REPOSITORY"
-    ibmcloud config --check-version false
-    ibmcloud login -a $IBMCLOUDAPI --no-region --apikey $APIKEY
-
-    TOKEN=$(ibmcloud iam oauth-tokens --output JSON | jq -r '.iam_token')
     GIT_TOKEN_URL=$(jq -r --arg git_repo "$REPOSITORY" \
       '.services[] | select (.parameters.repo_url==$git_repo) | .parameters.token_url' \
       $TOOLCHAIN_JSON)
@@ -65,6 +54,8 @@ data:
     # https://otc-github-consolidated-broker.us-south.devops.cloud.ibm.com/github/token?git_id=github
     # as there is already an url param git_id, just put the additional ones using &
     GIT_BROKER_URL="${GIT_TOKEN_URL}&toolchain_id=${TOOLCHAIN_ID}&service_instance_id=${GIT_SERVICE_INSTANCE_ID}&repo_url=${REPOSITORY}"
+    
+    TOKEN=$(ibmcloud iam oauth-tokens --output JSON | jq -r '.iam_token')
     echo "Doing cURL to ${GIT_BROKER_URL}"
     curl -s -o /workspace/github_token_result.json -X GET -H "Accept: application/json" \
       -H "Authorization: $TOKEN" "$GIT_BROKER_URL"
