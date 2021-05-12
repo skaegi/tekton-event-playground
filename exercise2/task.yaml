@@ -24,8 +24,8 @@ spec:
 
       ls -al /workspace/properties;
       printf "apikey: " && cat /workspace/properties/apikey && echo
+  
       ls -al /workspace/pipeline;
-      cat /workspace/toolchain.json | jq .;
 
       ibmcloud config --check-version false;
       ibmcloud login --no-region --apikey $(cat /workspace/properties/apikey);
