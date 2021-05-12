@@ -67,8 +67,9 @@ spec:
 
       cp /workspace/pipeline/.bluemix/config.json ~/.bluemix/config.json
 
+      set -x
       ls -al /workspace/properties
-      cat /workspace/properties/repository
+      cat /workspace/properties/*
 
       repository=$(cat /workspace/properties/repository);
       . /workspace/scripts/git-auth.sh $repository
