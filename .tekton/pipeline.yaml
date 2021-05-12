@@ -43,3 +43,6 @@ spec:
         name: docker-build
       runAfter: 
       - pipeline-task3
+      workspaces:
+      - name: pipeline
+        workspace: pipeline-ws
