@@ -4,7 +4,7 @@ metadata:
   name: scripts
 data:
   git-auth.sh: |
-    #!/bin/bash
+    #!/bin/sh
     set -e -o pipefail
     
     if [ -z "$1" ]; then
@@ -74,3 +74,15 @@ data:
 
     git config --global credential.helper store
     printf "url=$REPOSITORY\nusername=$GIT_AUTH_USER\npassword=$GIT_TOKEN" | git credential-store store
+  dockerd-entrypoint.sh: |
+    #!/bin/sh
+    set -e -o pipefail
+    
+    # Set the MTU to a value that is containable in the ibmcloud calico mtu value
+    # Use block storage instead of virtio-fs for Continuous Delivery shared workers
+    if [[ $(df -PT /var/lib/docker | awk 'NR==2 {print $2}') == virtiofs ]]; then
+      apk add e2fsprogs &&
+      truncate -s 20G /tmp/disk.img &&
+      mkfs.ext4 /tmp/disk.img &&
+      mount /tmp/disk.img /var/lib/docker; fi &&
+    dockerd-entrypoint.sh --mtu=1400;
