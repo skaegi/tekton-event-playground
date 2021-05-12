@@ -23,6 +23,8 @@ spec:
       set -e 
       ibmcloud config --check-version false;
       ibmcloud login --no-region --apikey $(cat /workspace/properties/apikey);
+      mkdir -p /workspace/pipeline/.bluemix && cp ~/.bluemix/config.json /workspace/pipeline/.bluemix/config.json
+
       . /workspace/scripts/git-auth.sh https://github.com/skaegi/tekton-event-playground;
       git clone https://github.com/skaegi/tekton-event-playground;
       echo tada;
@@ -87,6 +89,10 @@ spec:
       docker images
       docker run hello-world
       docker images
+      cp /workspace/pipeline/.bluemix/config.json ~/.bluemix/config.json
+      ic cr login
+      docker tag hello-world us.icr.io/skaegi/hello-world
+      docker push us.icr.io/skaegi/hello-world
     volumeMounts:
     - mountPath: /var/run/
       name: docker-socket
