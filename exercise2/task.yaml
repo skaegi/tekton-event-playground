@@ -23,7 +23,7 @@ spec:
       set -e
 
       ls -al /workspace/properties;
-      printf "apikey: " && cat /workspace/properties/apikey
+      printf "apikey: " && cat /workspace/properties/apikey && echo
       ls -al /workspace/pipeline;
       cat /workspace/toolchain.json | jq .;
 
