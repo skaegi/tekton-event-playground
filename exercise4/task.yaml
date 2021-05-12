@@ -65,13 +65,14 @@ spec:
     script: |
       #!/usr/bin/env bash
 
+      echo "Copy .bluemix/config.json to HOME"
       cp /workspace/pipeline/.bluemix/config.json ~/.bluemix/config.json
 
       cd ~
       repository=$(cat /workspace/properties/repository)
       . /workspace/scripts/git-auth.sh $repository
-      git clone $repository && cd $(basename $repository .git)
-      echo $(basename $repository .git)
+      git clone $repository
+      cd $(basename $repository .git)
       ls -al
     volumeMounts:
     - name: properties
