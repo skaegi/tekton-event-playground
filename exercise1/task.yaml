@@ -9,6 +9,20 @@ spec:
     - name: body
       description: The event body
   steps:
-  - name: hello-world
-    image: hello-world
-
+  - name: print-event
+    env:
+      - name: HEADER
+        value: $(params.header)
+      - name: BODY
+        value: $(params.body)
+    image: icr.io/continuous-delivery/pipeline/pipeline-base-ubi:3.0
+    script: |
+      #!/usr/bin/env bash
+      set -e
+      echo HEADER
+      echo "------"
+      echo $HEADER | jq .
+      echo
+      echo BODY
+      echo "-----"
+      echo $BODY | jq .
