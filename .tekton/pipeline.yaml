@@ -30,3 +30,14 @@ spec:
       workspaces:
       - name: pipeline
         workspace: pipeline-ws
+    - name: pipeline-task3
+      taskRef:
+        name: curl
+      params:
+        - name: url
+          value: https://google.com
+      runAfter: 
+      - pipeline-task2
+      workspaces:
+      - name: pipeline
+        workspace: pipeline-ws
