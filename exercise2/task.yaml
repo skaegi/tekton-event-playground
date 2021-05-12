@@ -38,8 +38,6 @@ spec:
     - name: toolchain
       mountPath: "/workspace/toolchain.json"
       subPath: toolchain.json
-    - name: scripts
-      mountPath: "/workspace/scripts"
   volumes:
   - name: properties
     projected:
