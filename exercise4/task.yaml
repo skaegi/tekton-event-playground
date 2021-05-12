@@ -70,7 +70,7 @@ spec:
       cd ~
       repository=$(cat /workspace/properties/repository)
       . /workspace/scripts/git-auth.sh $repository
-      git clone $repository
+      git clone $repository && cd $(basename $repository .git)
       ls -al
     volumeMounts:
     - name: properties
