@@ -85,6 +85,8 @@ spec:
       #!/usr/bin/env bash
       set -e 
       docker images
+      docker run hello-world
+      docker images
     volumeMounts:
     - mountPath: /var/run/
       name: docker-socket
