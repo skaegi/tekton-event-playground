@@ -65,19 +65,44 @@ spec:
     script: |
       #!/usr/bin/env bash
 
+      echo "Copy .bluemix/config.json to HOME"
       cp /workspace/pipeline/.bluemix/config.json ~/.bluemix/config.json
 
       cd ~
       repository=$(cat /workspace/properties/repository)
       . /workspace/scripts/git-auth.sh $repository
-      git clone $repository && cd $(basename $repository .git)
+      git clone $repository
+      cd $(basename $repository .git)
       ls -al
+
+      docker images
+      docker run hello-world
+      docker images
+      cp /workspace/pipeline/.bluemix/config.json ~/.bluemix/config.json
+      ic cr login
+      docker tag hello-world us.icr.io/skaegi/hello-world
+      docker push us.icr.io/skaegi/hello-world
+
     volumeMounts:
     - name: properties
       mountPath: "/workspace/properties"
     - name: toolchain
       mountPath: "/workspace/toolchain.json"
       subPath: toolchain.json
+    - name: scripts
+      mountPath: "/workspace/scripts"
+    - mountPath: /var/run/
+      name: docker-socket
+  sidecars:
+  - image: icr.io/continuous-delivery/pipeline/docker:19.03.15-dind
+    name: docker-daemon
+    securityContext:
+      privileged: true
+    scripts: |
+      sh /workspace/scripts/dockerd-entrypoint.sh
+    volumeMounts:
+    - mountPath: /var/run/
+      name: docker-socket
     - name: scripts
       mountPath: "/workspace/scripts"
   volumes:
@@ -99,4 +124,6 @@ spec:
   - name: scripts
     configMap:
       name: scripts
+  - name: docker-socket
+    emptyDir: {}
       
