@@ -4,3 +4,4 @@ metadata:
   name: default-properties
 data:
   apikey: CHANGEME
+  repository: CHANGEME
