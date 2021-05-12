@@ -14,7 +14,6 @@ data:
 
     REPOSITORY=$1
     if [[ "$REPOSITORY" != *.git ]]; then
-      echo "Adding .git suffix to Repository URL"
       REPOSITORY="${REPOSITORY}.git"
     fi
 
@@ -56,7 +55,7 @@ data:
     GIT_BROKER_URL="${GIT_TOKEN_URL}&toolchain_id=${TOOLCHAIN_ID}&service_instance_id=${GIT_SERVICE_INSTANCE_ID}&repo_url=${REPOSITORY}"
     
     TOKEN=$(ibmcloud iam oauth-tokens --output JSON | jq -r '.iam_token')
-    echo "Doing cURL to ${GIT_BROKER_URL}"
+
     curl -s -o /workspace/github_token_result.json -X GET -H "Accept: application/json" \
       -H "Authorization: $TOKEN" "$GIT_BROKER_URL"
     if jq -e '.access_token' /workspace/github_token_result.json > /dev/null 2>&1; then
@@ -67,10 +66,6 @@ data:
       cat /workspace/github_token_result.json
       exit 1
     fi
-
-    echo "GIT_REPOSITORY=$REPOSITORY"
-    echo "GIT_AUTH_USER=$GIT_AUTH_USER"
-    echo "GIT_TOKEN=$GIT_TOKEN"
 
     git config --global credential.helper store
     printf "url=$REPOSITORY\nusername=$GIT_AUTH_USER\npassword=$GIT_TOKEN" | git credential-store store
