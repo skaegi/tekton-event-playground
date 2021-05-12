@@ -11,10 +11,6 @@ spec:
   steps:
   - name: hello-world
     image: ubuntu
-    script: |
-      #!/usr/bin/env bash
-      set -e
-      echo hello world
   - name: print-event
     env:
       - name: HEADER
