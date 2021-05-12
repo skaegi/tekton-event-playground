@@ -38,6 +38,3 @@ spec:
           value: https://google.com
       runAfter: 
       - pipeline-task2
-      workspaces:
-      - name: pipeline
-        workspace: pipeline-ws
