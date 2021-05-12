@@ -67,12 +67,8 @@ spec:
 
       cp /workspace/pipeline/.bluemix/config.json ~/.bluemix/config.json
 
-      set -x
-      ls -al /workspace/properties
-      cat /workspace/properties/*
-
+      cd ~
       repository=$(cat /workspace/properties/repository)
-      echo $repository
       . /workspace/scripts/git-auth.sh $repository
       git clone $repository
       ls -al
