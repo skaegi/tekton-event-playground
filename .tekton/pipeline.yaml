@@ -38,3 +38,8 @@ spec:
           value: https://google.com
       runAfter: 
       - pipeline-task2
+    - name: pipeline-task4
+      taskRef:
+        name: docker-build
+      runAfter: 
+      - pipeline-task3
