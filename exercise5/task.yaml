@@ -71,7 +71,6 @@ spec:
       repository=$(cat /workspace/properties/repository)
       . /workspace/scripts/git-auth.sh $repository
       git clone $repository && cd $(basename $repository .git)
-      echo $(basename $repository .git)
       ls -al
     volumeMounts:
     - name: properties
