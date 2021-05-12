@@ -75,12 +75,15 @@ spec:
       cd $(basename $repository .git)
       ls -al
 
-      docker images
-      docker run hello-world
+      echo
+
       docker images
       cp /workspace/pipeline/.bluemix/config.json ~/.bluemix/config.json
+
+      docker build -t us.icr.io/skaegi/hello-world .
+      docker images
+
       ic cr login
-      docker tag hello-world us.icr.io/skaegi/hello-world
       docker push us.icr.io/skaegi/hello-world
 
     volumeMounts:
