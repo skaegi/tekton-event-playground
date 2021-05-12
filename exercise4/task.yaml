@@ -71,13 +71,17 @@ spec:
       ls -al /workspace/properties
       cat /workspace/properties/*
 
-      repository=$(cat /workspace/properties/repository);
+      repository=$(cat /workspace/properties/repository)
+      echo $repository
       . /workspace/scripts/git-auth.sh $repository
       git clone $repository
       ls -al
     volumeMounts:
     - name: properties
       mountPath: "/workspace/properties"
+    - name: toolchain
+      mountPath: "/workspace/toolchain.json"
+      subPath: toolchain.json
     - name: scripts
       mountPath: "/workspace/scripts"
   volumes:
@@ -93,6 +97,9 @@ spec:
       - secret:
           name: secure-properties
           optional: true
+  - name: toolchain
+    configMap:
+      name: toolchain
   - name: scripts
     configMap:
       name: scripts

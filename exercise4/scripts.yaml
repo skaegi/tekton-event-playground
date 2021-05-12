@@ -20,7 +20,7 @@ data:
 
     TOOLCHAIN_JSON=/workspace/toolchain.json
     if [ ! -f /workspace/toolchain.json ]; then
-      echo "$TOOLCHAINJSON not found"
+      echo "$TOOLCHAIN_JSON not found"
       exit 1
     fi
 
